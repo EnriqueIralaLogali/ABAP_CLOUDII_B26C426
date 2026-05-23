@@ -1,0 +1,25 @@
+CLASS zcl_11_log_c426 DEFINITION
+  PUBLIC
+
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    METHODS:
+      walk RETURNING VALUE(rv_walk) TYPE string.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_11_log_c426 IMPLEMENTATION.
+
+  METHOD walk.
+
+    rv_walk = 'The animal walks'.
+
+  ENDMETHOD.
+
+ENDCLASS.
