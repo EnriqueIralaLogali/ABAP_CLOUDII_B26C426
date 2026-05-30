@@ -1,0 +1,21 @@
+CLASS zcl_19_abstract_gch_log_c426 DEFINITION
+  PUBLIC
+  INHERITING FROM zcl_18_abstract_child_log_c426
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+    METHODS: abstract_method REDEFINITION.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_19_abstract_gch_log_c426 IMPLEMENTATION.
+
+  METHOD abstract_method.
+
+  ENDMETHOD.
+
+ENDCLASS.

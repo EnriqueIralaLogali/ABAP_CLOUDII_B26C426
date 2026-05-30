@@ -1,0 +1,21 @@
+CLASS zcl_13_log_c426 DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PRIVATE "PROTECTED "PUBLIC
+  GLOBAL FRIENDS zcl_14_log_c426. "zcl_01_exec_log_c426.
+
+  PUBLIC SECTION.
+  PROTECTED SECTION.
+
+    DATA: protected_attr TYPE string.
+
+  PRIVATE SECTION.
+
+    DATA: warehouse TYPE string.
+
+ENDCLASS.
+
+
+
+CLASS zcl_13_log_c426 IMPLEMENTATION.
+ENDCLASS.

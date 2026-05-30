@@ -1,0 +1,19 @@
+CLASS zcl_20_airplane_log_c426 DEFINITION ABSTRACT
+  PUBLIC
+  "FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    METHODS:
+      airplane_type ABSTRACT
+        RETURNING VALUE(rv_airplane_type) TYPE string.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_20_airplane_log_c426 IMPLEMENTATION.
+ENDCLASS.

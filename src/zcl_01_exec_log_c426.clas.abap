@@ -101,20 +101,103 @@ CLASS zcl_01_exec_log_c426 IMPLEMENTATION.
 *
 *    out->write( lo_child->gt_name ).
 
-* Narrowing cast --> Up Cast
+** Narrowing cast --> Up Cast
+*
+*    DATA(lo_animal) = NEW zcl_11_log_c426( ).
+*    DATA(lo_lion) = NEW zcl_12_log_c426( ).
+*
+*    out->write( lo_animal->walk( ) ).
+*    out->write( lo_lion->walk( ) ).
+*
+*    "lo_animal = lo_lion.
+*    out->write( 'Narrowing Cast' ).
+*
+*    out->write( lo_animal->walk( ) ).
+*    out->write( lo_lion->walk( ) ).
+*
+** Widening Cast --> Down cast
+*
+*    TRY.
+*        lo_lion ?= lo_animal.
+*
+*      CATCH cx_sy_move_cast_error INTO DATA(lx_cast).
+*        out->write( lx_cast->get_text( ) ).
+*        RETURN.
+*    ENDTRY.
+*
+*    out->write( 'Widening Cast' ).
+*
+*    out->write( lo_animal->walk( ) ).
+*    out->write( lo_lion->walk( ) ).
 
-    DATA(lo_animal) = NEW zcl_11_log_c426( ).
-    DATA(lo_lion) = NEW zcl_12_log_c426( ).
-
-    out->write( lo_animal->walk( ) ).
-    out->write( lo_lion->walk( ) ).
-
-    lo_animal = lo_lion.
-
-    out->write( lo_animal->walk( ) ).
-    out->write( lo_lion->walk( ) ).
+* Friendship
+*  data(lo_friend) = new zcl_13_log_c426( ).
 
 
+* Interfaces
+*    DATA(lo_int) = NEW zcl_16_interfaces_log_c426( ).
+*
+*    lo_int->set_conn_id( 'conn001' ).
+*
+*    out->write( lo_int->get_conn_id( ) ).
+*
+*    out->write( lo_int->get_customer( '000007' ) ).
+*
+*    out->write( lo_int->zif_03_log_c426~get_airports( ' ' ) ).
+
+** Polymorphism
+*    DATA: lt_airplanes TYPE STANDARD TABLE OF REF TO zcl_20_airplane_log_c426,
+*          lo_airplane  TYPE REF TO zcl_20_airplane_log_c426,
+*          lo_cargo_p   TYPE REF TO zcl_21_cargo_plane_log_c426,
+*          lo_pass_p    TYPE REF TO zcl_22_pass_plane_log_c426.
+*
+*    lo_cargo_p = NEW #( ).
+*    APPEND lo_cargo_p TO lt_airplanes.
+*
+*    lo_pass_p = NEW #( ).
+*    APPEND lo_pass_p TO lt_airplanes.
+*
+*    LOOP AT lt_airplanes INTO lo_airplane.
+*      out->write( lo_airplane->airplane_type( ) ).
+*    ENDLOOP.
+
+* Polymorphism - Interfaces
+*    DATA: lt_companies   TYPE STANDARD TABLE OF REF TO zif_04_log_c426,
+*          lo_company     TYPE REF TO zif_04_log_c426,
+*          lo_company_eu  TYPE REF TO zcl_23_company_eu_log_426,
+*          lo_company_usa TYPE REF TO zcl_24_company_usa_log_426,
+*          lo_plant       TYPE REF TO zcl_25_plant_log_c426.
+*
+*    lo_company_eu = NEW #( ).
+*    APPEND lo_company_eu TO lt_companies.
+*
+*    lo_company_usa = NEW #( ).
+*    APPEND lo_company_usa TO lt_companies.
+*
+*    lo_plant = NEW #( ).
+*
+*    LOOP AT lt_companies INTO lo_company.
+*      out->write( lo_company->define_company( ) ).
+*      out->write( lo_plant->assign_company( lo_company ) ).
+*    ENDLOOP.
+
+* Assciation - References
+*    DATA(lo_credit_card) = NEW zcl_26_credit_card_log_c426( ).
+*    DATA(lo_client) = NEW zcl_27_client_log_c426( ).
+*
+*    lo_credit_card->set_card_num( '2222 3333 4444 5555' ).
+*
+*    lo_client->set_credit_card( lo_credit_card ).
+*
+*    out->write( lo_client->get_credit_card( )->get_card_num( ) ).
+
+* Composition - References
+    DATA(lo_keyboard) = NEW zcl_28_keyboard_log_c426( ).
+    DATA(lo_laptop) = NEW zcl_29_laptop_lo_c426( lo_keyboard ).
+
+    lo_keyboard->keyboard_type = 'ES'.
+
+    out->write( lo_laptop->keyboard->keyboard_type ).
 
 
 
